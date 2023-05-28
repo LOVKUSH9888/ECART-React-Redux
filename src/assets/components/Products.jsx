@@ -27,7 +27,7 @@ const Products = () => {
             variant="top"
             src={product.image}
             style={{ width: "100px", height: "100px" }}
-          />
+          /> 
         </div>
         <Card.Body>
           <Card.Title>{product.title}</Card.Title>
