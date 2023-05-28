@@ -23,21 +23,26 @@ function App() {
 
 
   const cards = products.map(product => (
-    <div className="col-md-3" key={product.id}>
-      <Card style={{ width: '18rem' }}>
-        <Card.Img variant="top" src={product.image} />
-        <Card.Body>
-          <Card.Title>{product.title}</Card.Title>
-          <Card.Text>{product.description}</Card.Text>
-          <Button variant="primary">Go somewhere</Button>
-        </Card.Body>
-      </Card>
+    <div className="col-md-3 text-center" key={product.id} style={{marginBottom: '10px'}}>
+    <Card style={{ width: '18rem' }} >
+    <div className="text-center">
+      <Card.Img variant="top" src={product.image} style={{width: '100px', height: '100px'}}/>
+      </div>
+      <Card.Body>
+        <Card.Title>{product.title}</Card.Title>
+        <Card.Text>
+        {product.price}
+        </Card.Text>
+        <Button variant="primary ">Add To Cart</Button>
+      </Card.Body>
+      
+    </Card>
     </div>
   ));
-
+                                                                
   return (
     <>
-      <h1>Products</h1>
+      <h1 style={{textAlign: 'center'}}>Product Hub</h1>
       <div className="row">
       {cards}
       </div>
