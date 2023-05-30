@@ -2,18 +2,27 @@ import { useState, useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 
+import { useDispatch } from "react-redux";
+import { add } from "../../store/cartSlice";
+
 const Products = () => {
-  //For calling the API we use the useEffect & useState because I want my data on load of my page and
+  //using the Despatch
+  const dispatch = useDispatch();
 
-  const [products, getProducts] = useState([]);
+  //initial state whike calling the API
+  const [products, setProducts] = useState([]);
 
+  //calling the API
   useEffect(() => {
-    //Api fetching
-
     fetch("https://fakestoreapi.com/products")
-      .then((data) => data.json())
-      .then((result) => getProducts(result));
+      .then((response) => response.json())
+      .then((data) => setProducts(data));
   }, []);
+
+  //Onclick const declaration
+  const addToCart = (product) => {
+    dispatch(add(product));
+  };
 
   const cards = products.map((product) => (
     <div
@@ -27,12 +36,14 @@ const Products = () => {
             variant="top"
             src={product.image}
             style={{ width: "100px", height: "100px" }}
-          /> 
+          />
         </div>
         <Card.Body>
           <Card.Title>{product.title}</Card.Title>
           <Card.Text>{product.price}</Card.Text>
-          <Button variant="primary ">Add To Cart</Button>
+          <Button variant="primary" onClick={() => addToCart(product)}>
+            Add To Cart
+          </Button>
         </Card.Body>
       </Card>
     </div>
